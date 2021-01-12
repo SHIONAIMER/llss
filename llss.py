@@ -9,9 +9,9 @@ Headers = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) Apple
 
 #获取所有目标页面的html
 def get_all_html(start, end):
-    htmls = []
-    root_url = 'http://www.liuli.pl/wp/anime.html/page/'
     try:
+        htmls = []
+        root_url = 'http://www.liuli.pl/wp/anime.html/page/'
         for i in range(start, end + 1):
             url = root_url + str(i)
             r = requests.get(url, headers=Headers, timeout=10)
@@ -19,9 +19,9 @@ def get_all_html(start, end):
             r.encoding = 'utf-8'
             htmls.append(r.text)
             print('Get page %d successfully!' % i)
+        return htmls
     except:
         print('Something is wrong when get html. May be timeout.')
-    return htmls
 
 #对于单个包含磁链的页面进行信息采集
 def get_magnetic(url):
